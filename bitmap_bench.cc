@@ -98,6 +98,12 @@ int main(int argc, char **argv)
     BitmapPoppy* bitmap = new BitmapPoppy(bits, nbits);
     uint64 dummy = 0x1234567890ABCDEF;
 
+    fprintf(stdout, "left ones: %" PRIu64 "\n", numOnesL);
+    fprintf(stdout, "right ones: %" PRIu64 "\n", numOnesR);
+    fprintf(stdout, "total ones: %" PRIu64 "\n", bitmap->pCount());
+    
+    assert(numOnesL + numOnesR == bitmap->pCount());
+
     if (mode == BENCH_RANK) {
         for (int i = 0; i < numQueries; i++) {
             queries[i] = xRand64() % nbits + 1;
